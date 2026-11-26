@@ -1,0 +1,32 @@
+DARK ANGEL BOT — site + receptor WhatsApp (não oficial)
+
+O site possui editor de foto e vídeo, campo WhatsApp com DDD e autorização
+para mencionar o usuário no grupo. Não tem botões de baixar ou compartilhar.
+O código de grupo deve ser definido numa variável privada GROUP_INVITE_CODE.
+
+PUBLICAÇÃO
+1. Crie um repositório PRIVADO no GitHub e envie os arquivos desta pasta.
+   Não inclua bot/.env (somente .env.example).
+2. No Railway, conecte o repositório ao projeto dark-angel-bot.
+   A raiz do serviço deve ser a pasta que contém este Dockerfile.
+3. No Railway, configure GROUP_INVITE_CODE (apenas o código do convite,
+   sem o endereço completo) e gere um domínio.
+4. Adicione um volume persistente em /data para conservar o WhatsApp conectado.
+5. Abra os logs PRIVADOS. O bot mostra o QR de conexão.
+   No WhatsApp da conta autorizada, abra Dispositivos conectados >
+   Conectar dispositivo e leia o QR com o próprio telefone autorizado.
+6. Confirme que a conta do bot está no grupo receptor; pode precisar
+   da aprovação do administrador. A rota /api/status deve responder
+   connected=true e groupReady=true. Então o botão no site é habilitado.
+
+CUIDADOS
+- A biblioteca whatsapp-web.js é não oficial, pode parar ou causar
+  restrições na conta. Não garante acesso a grupos pelo convite.
+- Nunca mostre QR/códigos de confirmação/sessões a terceiros.
+- Um link de convite não autentica uma conta no WhatsApp.
+- Somente participantes do grupo podem ser efetivamente mencionados.
+- Figurinhas nativas não têm áudio: a opção com áudio envia vídeo.
+- O telefone informado não é verificado quanto à titularidade; para uso
+  público é recomendável autenticação/validação e proteção adicional
+  contra abuso.
+- A hospedagem Railway pode gerar cobranças conforme o plano.
